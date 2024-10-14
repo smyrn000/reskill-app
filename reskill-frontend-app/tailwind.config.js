@@ -8,10 +8,7 @@ export default {
     extend: {
       colors: {
         'subheading': '#828282'
-      },
-      screens: {
-        'xs': '320px'
-      }
+      }      
     },
   },
   plugins: [],

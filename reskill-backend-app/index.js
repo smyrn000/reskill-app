@@ -39,6 +39,9 @@ app.get("/posts", async (req, res) => {
 
     const limitedMergedData = mergedData.slice(0, 9);
     const homeData = {
+      subheading: `Subheading that sets up context,
+                    shares more info about the author,
+                    or generally gets people psyched to keep reading`,
       firstBody: `Body text for your whole article or post. We’ll put in some lorem ipsum to show how a filled-out page might look:\n
                       Excepteur efficient emerging, minim veniam anim aute carefully curated Ginza conversation exquisite perfect nostrud nisi intricate Content. Qui  international first-class nulla ut. Punctual adipisicing, essential lovely queen tempor eiusmod irure. Exclusive izakaya charming Scandinavian impeccable aute quality of life soft power pariatur Melbourne occaecat discerning. Qui wardrobe aliquip, et Porter destination Toto remarkable officia Helsinki excepteur Basset hound. Zürich sleepy perfect consectetur.\n
                       Exquisite sophisticated iconic cutting-edge laborum deserunt Addis Ababa esse bureaux cupidatat id minim. Sharp classic the best commodo nostrud delightful. Conversation aute Rochester id. Qui sunt remarkable deserunt intricate airport handsome K-pop excepteur classic esse Asia-Pacific laboris.
@@ -46,12 +49,11 @@ app.get("/posts", async (req, res) => {
       secondBody: `Excepteur efficient emerging, minim veniam anim cloying aute carefully curated gauche. Espresso exquisite perfect nostrud nisi intricate. Punctual adipisicing Borzoi, essential lovely tempor eiusmod irure. Exclusive izakaya charming Quezon City impeccable aute quality of life soft power pariatur occaecat discerning. Qui wardrobe aliquip, et Amadeus rock opera.\n
                       Exquisite sophisticated iconic cutting-edge laborum deserunt esse bureaux cupidatat id minim. Sharp classic the best commodo nostrud delightful. Conversation aute wifey id. Qui sunt remarkable deserunt intricate airport excepteur classic esse riot girl.
                       `,
-      photos:
-      [
-          {id:0, url: "https://via.placeholder.com/600/363789"},
-          {id:2, url: "https://via.placeholder.com/600/7375af"},
-          {id:3, url: "https://via.placeholder.com/600/363789"},
-      ]
+      photos: [
+        { id: 0, url: "https://via.placeholder.com/600/363789" },
+        { id: 2, url: "https://via.placeholder.com/600/7375af" },
+        { id: 3, url: "https://via.placeholder.com/600/363789" },
+      ],
     };
     const finalData = {
       mainData: homeData,
@@ -68,21 +70,20 @@ app.get("/post/:id", async (req, res) => {
   const postId = req.params.id;
 
   try {
-    
     const postResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/posts/${postId}`
     );
     const post = postResponse.data;
-    
+
     const photosResponse = await axios.get(
       `https://jsonplaceholder.typicode.com/photos`
     );
     const allPhotos = photosResponse.data;
-    
+
     const userPhotos = allPhotos.filter(
       (photo) => photo.albumId === post.userId
     );
-    
+
     const combinedData = {
       ...post,
       photos: userPhotos.map((photo) => ({
@@ -92,7 +93,7 @@ app.get("/post/:id", async (req, res) => {
         thumbnailUrl: photo.thumbnailUrl,
       })),
     };
-    
+
     res.json(combinedData);
   } catch (error) {
     console.error("Backend Error fetching post or photos:", error.message);

@@ -3,10 +3,8 @@ import axios from "axios";
 
 const Home = () => {
   const [related, setRelated] = useState(null);
-  const [homePost, setHomePost] = useState(null);
-  const text = `Subheading that sets up context,
-    shares more info about the author,
-    or generally gets people psyched to keep reading`;
+  const [homePost, setHomePost] = useState(null);  
+
   useEffect(() => {
     axios
       .get(`http://localhost:3000/posts`)
@@ -30,7 +28,7 @@ const Home = () => {
     <div className="container mx-auto my-40 flex flex-col">
       <h1 className="max-xl:ml-36 max-sm:ml-0 font-bold text-6xl max-sm:text-center">Posts List</h1>
       <h2 className="max-xl:ml-36 max-sm:ml-0 my-7 sm:w-1/3 text-subheading max-sm:text-center">
-        {text}
+        {homePost.subheading}
       </h2>
       <img
         src={homePost.photos[0].url}
@@ -47,7 +45,7 @@ const Home = () => {
         {homePost.secondBody}
       </p>
       <div className="mx-auto">
-        <h1 className="font-bold mx-auto ">Related articles or posts</h1>
+        <h1 className="font-bold mx-auto text-lg ">Related articles or posts</h1>
         <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 mt-10">
           {related.map((item) => (
             <div key={item.id} className=" overflow-hidden cursor-pointer" onClick={handleRelatedClick}>

@@ -26,10 +26,12 @@ function App() {
           </div>
         </div>
       </nav>
+      
       <Routes>
         <Route path="/posts" element={<Home />} />
         <Route path="/post/:id" element={<SinglePost />} />
       </Routes>
+
       <Footer/>
     </>
   );
