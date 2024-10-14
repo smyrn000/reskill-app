@@ -25,4 +25,25 @@ Ensure you have the following installed on your system:
 
 - Node.js (version >= 12)
 - npm (comes with Node.js) or yarn.
-#### Clone the Repository
+- Clone the Repository
+
+### Running the Frontend
+```bash
+cd reskill-frontend-app
+npm install
+npm run dev
+```
+**Check to make sure it is running on localhost:5173**
+
+### Running the Backend
+```bash
+cd reskill-backend-app
+node index.js
+```
+**Check to make sure it is running on localhost:3000**
+
+### Website
+On your browser visit:
+- **localhost:5173/posts**
+- **localhost:5173/post/*{number of choice}***
+
