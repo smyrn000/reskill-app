@@ -28,6 +28,7 @@ function App() {
       </nav>
       
       <Routes>
+      <Route path="/" element={<Home />} />
         <Route path="/posts" element={<Home />} />
         <Route path="/post/:id" element={<SinglePost />} />
       </Routes>
